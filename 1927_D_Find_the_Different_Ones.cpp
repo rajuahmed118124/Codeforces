@@ -18,23 +18,50 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 
 
-
 void solve()
 {
     int n;
     cin>>n;
-    vector<int>v(n);
+    vector<int>v(n), v1;
+    int last = -1;
     for(int i=0; i<n; i++)
     {
         cin>>v[i];
+        if(v[i]!=last)
+        {
+            v1.pb(i+1);
+            last = v[i];
+        }
     }
+
     int q;
     cin>>q;
     while(q--)
     {
-        int a, b;
-        cin>>a>>b;
-
+        int l, r;
+        cin>>l>>r;
+        int idx1 = -1, low = 0, high = v1.size()-1;
+        while(low<=high)
+        {
+            int mid = low + (high-low)/2;
+            if(v1[mid]<=l)
+            {
+                idx1 = mid;
+                low = mid + 1;
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+        if(idx1==v1.size()-1 || v1[idx1+1]>r)
+        {
+            cout<<"-1 -1"<<endl;
+        }
+        else{
+            int ans1= max(v1[idx1], l);
+            int ans2 = min(v1[idx1+1], r);
+            cout<<ans1<<" "<<ans2<<endl;
+        }
     }
 }
 
