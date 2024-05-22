@@ -32,15 +32,15 @@ void solve()
     ll n, odd=0, even=0;
     cin>>n;
     vector<ll>v(n);
-    for(int i=0; i<n; i++)
+    for(ll i=0; i<n; i++)
     {
         cin>>v[i];
     }
     ll k =2;
     while(true)
     {
-        set<int>st;
-        for(int i=0;i<n; i++)
+        set<ll>st;
+        for(ll i=0;i<n; i++)
         {
             st.insert(v[i]%k);
         }
